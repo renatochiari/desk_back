@@ -64,5 +64,13 @@ namespace Desk.Infra.Repositories
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public IEnumerable<Usuario> GetByNome(Guid empresaId, string nome)
+        {
+            if (_context.Usuarios == null)
+                return new List<Usuario>();
+
+            return _context.Usuarios.AsNoTracking().Where(UsuarioQueries.GetByNome(empresaId, nome)).OrderBy(x => x.Nome);
+        }
     }
 }

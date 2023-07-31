@@ -24,5 +24,10 @@ namespace Desk.Domain.Queries
         {
             return x => x.Email == email;
         }
+
+        public static Expression<Func<Usuario, bool>> GetByNome(Guid empresaId, String nome)
+        {
+            return x => x.EmpresaId == empresaId && x.Nome.Contains(nome);
+        }
     }
 }

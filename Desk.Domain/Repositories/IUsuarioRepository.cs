@@ -9,6 +9,7 @@ namespace Desk.Domain.Repositories
         Usuario? GetById(Guid empresaId, Guid id);
         Usuario? GetByEmail(String email);
         IEnumerable<Usuario> GetAll(Guid empresaId);
+        IEnumerable<Usuario> GetByNome(Guid empresaId, string nome);
         IEnumerable<Usuario> GetByCliente(Guid empresaId, Guid clienteId);
     }
 }

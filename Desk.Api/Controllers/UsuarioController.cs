@@ -36,6 +36,15 @@ namespace Desk.Api.Controllers
         }
 
         [HttpGet]
+        [Route("nome/{nome}")]
+        [Authorize(Roles = "adm")]
+        public IEnumerable<Usuario> GetByNome(string nome, [FromServices] IUsuarioRepository repository)
+        {
+            var empresaId = User.Claims.First(c => c.Type == "empresaId").Value;
+            return repository.GetByNome(new Guid(empresaId), nome);
+        }
+
+        [HttpGet]
         [Route("cliente/{id}")]
         [Authorize(Roles = "adm,sup")]
         public IEnumerable<Usuario> GetByCliente(Guid id, [FromServices] IUsuarioRepository repository)
